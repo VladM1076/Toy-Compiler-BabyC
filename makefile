@@ -1,16 +1,16 @@
-all: Parser Scanner YourCode 
+all: Parser Scanner YourCode
 	gcc BabyC.tab.o lex.yy.o driver.o BabyC.o -o bcc
 
-YourCode: BabyC.o driver.o 
+YourCode: BabyC.o driver.o
 
-Scanner: BabyC.lex 
+Scanner: BabyC.lex
 	flex BabyC.lex
 	gcc -c lex.yy.c
 
-Parser: BabyC.y  
+Parser: BabyC.y
 	bison -d BabyC.y
 	gcc -c BabyC.tab.c
 
-%.o: %.c 
+%.o: %.c
 	gcc -c $<
 
