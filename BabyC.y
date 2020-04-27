@@ -84,7 +84,7 @@ Term: Factor			{$$ = $1;}
 	
 Factor: IDENT 		{$$ = CreateIdentNode($1, 0); printf("Creating IDENT node for %s\n", $1);}
 	| NUM 			{$$ = CreateNumNode($1); printf("Creating NUM node for %d\n", $1);}
-	| '('Expr')'	{$$ = $2; printf("Creating Expression node in parentheses\n")}
+	| '('Expr')'	{$$ = $2; printf("Creating Expression node in parentheses\n");}
 ;
 
 StatementList: 					{$$ = NULL;} 
