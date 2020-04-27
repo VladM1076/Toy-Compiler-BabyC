@@ -11,8 +11,6 @@ int labelCnt = 1;
 
 FILE* fout;
 
-// Write the implementations of the functions that do the real work here
-
 ASTNode* CreateNumNode(int num)
 {
 	ASTNode* node = (ASTNode*)malloc(sizeof(ASTNode));
@@ -55,9 +53,6 @@ ASTNode* CreateIdentNode(char* name, int lhident)
 }
 
 
-// Take a statement node and a statement list node and connect them together
-// to form a bigger statement list node (add the statement to the statement list).
-// Return a pointer to the bigger list that resulted from this linking
 ASTNode* CreateStatementListNode(ASTNode* st, ASTNode* stList)
 {
 	if (stList)	//check if NULL
@@ -75,8 +70,9 @@ void AddDeclaration(char* name)
 	
 	if(CheckSymbolList(name))
 	{
-		printf("ERROR on line %d: Multiple declarations of '%s'.\n", 0, name);  //FIXME: HOW TO SET LINE #!?!
-		exit(1);
+		char error[] = "Multiple declarations of ' '";
+		error[26] = *name;		//also bit of a hack, error only works with 1 character variable names
+		yyerror(error);
 	}
 	
 	SymbolNode* new = (SymbolNode*)malloc(sizeof(SymbolNode));
@@ -284,8 +280,7 @@ void LinkIdentNodes(ASTNode* node)
 			node->sym = sym;
 		else
 		{
-			printf("ERROR on line %d: Ident not declared.\n", 0); //FIXME: HOW TO SET LINE #!?!
-			exit(1);
+			yyerror("Ident not declared");
 		}
 	}
 }
@@ -308,6 +303,7 @@ SymbolNode* CheckSymbolList(char* name)
 }
 
 
+//Traverses using DFS and prints ILOC to file
 void GenerateILOC(ASTNode* node)
 {
 	if(!node)

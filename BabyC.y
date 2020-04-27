@@ -31,7 +31,7 @@
 %token ELSE "else"
 %token WHILE "while"
 
-//Define the types for the grammar attributes ($$, $1, $2, ...) 
+//Define the types for the grammar attributes
 %union 
 {
 	ASTNode* node; // Most $$ values will be ASTNodes 
@@ -43,7 +43,7 @@
 %token <string> IDENT
 %token <num> NUM
 
-//Specify the type for each non-terminal in the grammar. Here are some samples:
+//Specify the type for each non-terminal in the grammar.
 %type <node> Statement
 %type <node> Assignment
 %type <node> If
@@ -61,7 +61,7 @@
 
 %%
 
-// Write the grammar for BabyC, and write an embedded action for each production. Here are some samples for you:
+//The grammar for BabyC, and the embedded actions for each production.
 
 Goal: "main" '(' ')' '{' DeclarationList StatementList '}'	{gASTRoot=$6;} // Store the AST root node in gASTRoot
 ;

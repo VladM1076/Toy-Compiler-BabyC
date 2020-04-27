@@ -22,8 +22,7 @@ int main(int argc, char**argv)
                  exit(1);
         }
 
-        // Call the parser. 
-        // Add embedded actions to the parser (in BabyC.y) to construct the AST and store its root in gASTRoot. 
+        // Call the parser.
         yyparse();
         fclose(yyin);
 		
