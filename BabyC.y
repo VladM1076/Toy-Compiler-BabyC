@@ -9,8 +9,8 @@
 	extern int yyerror(const char *);
 
 // The ASTNode root
-    extern ASTNode* gASTRoot;
-	
+	extern ASTNode* gASTRoot;
+
 %}
 
 //Put any initialization code here 
